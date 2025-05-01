@@ -32,6 +32,7 @@ jobs:
       run: mvn test
 
     - name: Upload report
+      if: always()
       uses: actions/upload-artifact@v4
       with:
           name: Test-Reports
