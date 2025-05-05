@@ -201,9 +201,4 @@ public class GenerateReport {
 			e.getMessage();
 		}
 	}
-
-	
-
-	
-
 }

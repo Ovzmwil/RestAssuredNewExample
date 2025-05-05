@@ -17,13 +17,14 @@ import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.http.Header;
 import io.restassured.response.Response;
+import me.lsantana.RestAssuredNewExample.util.Data;
 import me.lsantana.RestAssuredNewExample.util.GenerateReport;
-import me.lsantana.RestAssuredNewExample.util.RestHelper;
 
 public class ExampleClassTest extends GenerateReport {
 
+	static final String USERS_ENDPOINT = "/api/users";
+
 	Response response;
-	RestHelper restHelper = new RestHelper();
 
 	Map<String, Object> bodyMap = new HashMap<String, Object>();
 
@@ -48,6 +49,10 @@ public class ExampleClassTest extends GenerateReport {
 		afterAPITest(bodyMap, response);
 	}
 
+	public Response sendPostRequest(String endpoint) {
+		return given().contentType(ContentType.JSON).body(bodyMap).when().post(endpoint);
+	}
+
 	@Test
 	public void getMethodTest() {
 		response = when().get("/");
@@ -61,11 +66,7 @@ public class ExampleClassTest extends GenerateReport {
 		bodyMap.put("username", "newUser");
 		bodyMap.put("password", "12345678");
 
-		response = given()
-				.contentType(ContentType.JSON)
-				.body(bodyMap)
-				.when()
-				.post("/api/users");
+		response = sendPostRequest(USERS_ENDPOINT);
 
 
 		Assert.assertEquals(response.statusCode(), 201);
@@ -79,16 +80,26 @@ public class ExampleClassTest extends GenerateReport {
 		bodyMap.put("username", username);
 		bodyMap.put("password", password);
 
-		response = given()
-				.contentType(ContentType.JSON)
-				.body(bodyMap)
-				.when()
-				.post("/api/users");
+		response = sendPostRequest(USERS_ENDPOINT);
 
 
 		Assert.assertEquals(response.statusCode(), 400);
 		Assert.assertEquals(response.getHeader("Content-Type"), "application/json");
 		Assert.assertNotEquals(response.getBody(), null);
 		Assert.assertNotEquals(response.jsonPath().getString("error"), null);
+	}
+
+	@Test
+	public void createUserRandomData() {
+		String username = Data.getRandomUsername();
+		bodyMap.put("username", username);
+		bodyMap.put("password", Data.getRandomPassword());
+		
+		response = sendPostRequest(USERS_ENDPOINT);
+		
+		Assert.assertEquals(response.statusCode(), 201);
+		Assert.assertEquals(response.getHeader("Content-Type"), "application/json");
+		Assert.assertNotEquals(response.getBody(), null);
+		Assert.assertEquals(response.jsonPath().getString("username"), username);
 	}
 }
