@@ -22,8 +22,10 @@ RestAssuredNewExample/
 |               └── lsantana/
 |                   └── RestAssuredNewExample/
 |                       └── util/
+|                           ├── ConfigReader.java
 |                           ├── Data.java
-|                           └── GenerateReport.java
+|                           ├── GenerateReport.java
+|                           └── RestHelper.java
 │   ├── test/
 │       ├── java/
 │           └── me/
@@ -32,7 +34,7 @@ RestAssuredNewExample/
 |                       └── test/
 |                           └── ExampleClassTest.java
 |       └── resources/
-|           └── Config.properties
+|           └── config.properties
 └── README.md
 ```
 
