@@ -1,25 +1,62 @@
-# Description
+# RestAssuredNewExample
 
-This is a testing API project using Java with RestAssured.
+API test automation project using **Java**, **RestAssured**, and **TestNG**, with **Maven** as the build tool.
 
-## Installation
+## 📌 Technologies Used
 
-Maven and Java are required.
+- Java 1.8
+- Maven
+- RestAssured
+- TestNG
+- ExtentReports (for test reports)
 
-```bash
-mvn clean install
+## 🚀 Project Structure
+
+```
+RestAssuredNewExample/
+├── pom.xml
+├── src/
+│   ├── main/
+|       └── java/
+|           └── me/
+|               └── lsantana/
+|                   └── RestAssuredNewExample/
+|                       └── util/
+|                           ├── Data.java
+|                           └── GenerateReport.java
+│   ├── test/
+│       ├── java/
+│           └── me/
+|               └── lsantana/
+|                   └── RestAssuredNewExample/
+|                       └── test/
+|                           └── ExampleClassTest.java
+|       └── resources/
+|           └── Config.properties
+└── README.md
 ```
 
-## Code
 
-This project is built with a simple test class, using a HashMap to create the body request, RestAssured to call APIs, and TestNG to execute and build the test methods.
-The GenerateReport class is used to generate an HTML report using the AventStack library.
+## ⚙️ How to Run the Tests
 
-## Running
+1. **Clone the repository:**
 
 ```bash
-mvn test
+git clone https://github.com/Ovzmwil/RestAssuredNewExample.git
+cd RestAssuredNewExample
 ```
 
-## Report
-The HTML report will be generated on target/report
+2. **Run tests using Maven:**
+
+```bash
+mvn clean test
+```
+
+3. **View the test report:**
+
+After execution, a file named `ExampleClassTestReport.html` will be generated in the project path `target/report`, containing detailed test results.
+
+**Note:** Make sure you have Java JDK 8+ and Maven installed.
+
+
+
