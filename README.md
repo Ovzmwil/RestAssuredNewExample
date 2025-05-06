@@ -10,7 +10,7 @@ API test automation project using **Java**, **RestAssured**, and **TestNG**, wit
 - TestNG
 - ExtentReports (for test reports)
 
-## 🚀 Project Structure
+## 📂 Project Structure
 
 ```
 RestAssuredNewExample/
@@ -18,21 +18,12 @@ RestAssuredNewExample/
 ├── src/
 │   ├── main/
 |       └── java/
-|           └── me/
-|               └── lsantana/
-|                   └── RestAssuredNewExample/
-|                       └── util/
-|                           ├── ConfigReader.java
-|                           ├── Data.java
-|                           ├── GenerateReport.java
-|                           └── RestHelper.java
+|           └── me.lsantana.RestAssuredNewExample
+|               └── utils/
 │   ├── test/
 │       ├── java/
-│           └── me/
-|               └── lsantana/
-|                   └── RestAssuredNewExample/
-|                       └── test/
-|                           └── ExampleClassTest.java
+│           └── me.lsantana.RestAssuredNewExample
+|               └── test/
 |       └── resources/
 |           └── config.properties
 └── README.md
