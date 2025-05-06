@@ -26,13 +26,13 @@ import com.google.gson.Gson;
 import io.restassured.response.Response;
 
 public class GenerateReport {
-	
+
 	ExtentReports reports;
 	ExtentTest testInfo;
 	ExtentSparkReporter sparkReporter;
 	String message, finalReportPath, documentTitle, reportName;
 	String testOutPutPath = System.getProperty("user.dir") + "/target/reports/";
-	
+
 	@BeforeClass
 	public void beforeClass(ITestContext context) {
 		try {
@@ -68,7 +68,7 @@ public class GenerateReport {
 			e.getMessage();
 		}
 	}
-	
+
 	@BeforeMethod
 	public void beforeTest(Method method) {
 		try {
@@ -80,7 +80,7 @@ public class GenerateReport {
 			e.getMessage();
 		}
 	}
-	
+
 	@AfterMethod
 	public void afterTest(ITestResult result) {
 		try {
@@ -108,7 +108,7 @@ public class GenerateReport {
 			e.getMessage();
 		}
 	}
-	
+
 	@AfterClass
 	public void afterClass() {
 		try {
@@ -172,6 +172,7 @@ public class GenerateReport {
 	public void afterAPITest(Map<String, Object> request, Response response) {
 		try {
 			String tempBodyResponse = response.getBody().asString();
+			String tempHeaderResponse = response.headers().toString();
 			String tempRequest = "";
 
 			if (request == null || request.isEmpty()) {
@@ -194,6 +195,12 @@ public class GenerateReport {
 				this.logCodeBlock("Response:", tempBodyResponse);
 			} else {
 				this.log(String.format("Response: %s", tempBodyResponse));
+			}
+
+			if (tempHeaderResponse.length() > 1000) {
+				this.logCodeBlock("Response headers:", tempHeaderResponse);
+			} else {
+				this.log(String.format("Response headers: %s", tempHeaderResponse));
 			}
 
 			this.logTimeout(response.time());
